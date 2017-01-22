@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03EABD4C1E2D7D8200135081 /* VendingInventory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03EABD4B1E2D7D8200135081 /* VendingInventory.plist */; };
+		03EABD4E1E2DA3F800135081 /* VendingMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EABD4D1E2DA3F800135081 /* VendingMachine.swift */; };
 		03ECAE281E2A523B00E68926 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECAE271E2A523B00E68926 /* AppDelegate.swift */; };
 		03ECAE2A1E2A523B00E68926 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECAE291E2A523B00E68926 /* ViewController.swift */; };
 		03ECAE2D1E2A523B00E68926 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03ECAE2B1E2A523B00E68926 /* Main.storyboard */; };
 		03ECAE2F1E2A523B00E68926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03ECAE2E1E2A523B00E68926 /* Assets.xcassets */; };
 		03ECAE321E2A523B00E68926 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03ECAE301E2A523B00E68926 /* LaunchScreen.storyboard */; };
+		03ECAE3C1E2B1BA300E68926 /* VendingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECAE3B1E2B1BA300E68926 /* VendingItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03EABD4B1E2D7D8200135081 /* VendingInventory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = VendingInventory.plist; path = "../../VendingMachine-StarterFiles/VendingMachine/VendingInventory.plist"; sourceTree = "<group>"; };
+		03EABD4D1E2DA3F800135081 /* VendingMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingMachine.swift; sourceTree = "<group>"; };
 		03ECAE241E2A523B00E68926 /* VendingMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VendingMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ECAE271E2A523B00E68926 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03ECAE291E2A523B00E68926 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,7 @@
 		03ECAE2E1E2A523B00E68926 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03ECAE311E2A523B00E68926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03ECAE331E2A523B00E68926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03ECAE3B1E2B1BA300E68926 /* VendingItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendingItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +62,13 @@
 			children = (
 				03ECAE271E2A523B00E68926 /* AppDelegate.swift */,
 				03ECAE291E2A523B00E68926 /* ViewController.swift */,
+				03ECAE3B1E2B1BA300E68926 /* VendingItemCell.swift */,
+				03EABD4D1E2DA3F800135081 /* VendingMachine.swift */,
 				03ECAE2B1E2A523B00E68926 /* Main.storyboard */,
 				03ECAE2E1E2A523B00E68926 /* Assets.xcassets */,
 				03ECAE301E2A523B00E68926 /* LaunchScreen.storyboard */,
 				03ECAE331E2A523B00E68926 /* Info.plist */,
+				03EABD4B1E2D7D8200135081 /* VendingInventory.plist */,
 			);
 			path = VendingMachine;
 			sourceTree = "<group>";
@@ -91,7 +100,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Jay Zalawadia";
 				TargetAttributes = {
 					03ECAE231E2A523B00E68926 = {
@@ -125,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03ECAE321E2A523B00E68926 /* LaunchScreen.storyboard in Resources */,
+				03EABD4C1E2D7D8200135081 /* VendingInventory.plist in Resources */,
 				03ECAE2F1E2A523B00E68926 /* Assets.xcassets in Resources */,
 				03ECAE2D1E2A523B00E68926 /* Main.storyboard in Resources */,
 			);
@@ -139,6 +149,8 @@
 			files = (
 				03ECAE2A1E2A523B00E68926 /* ViewController.swift in Sources */,
 				03ECAE281E2A523B00E68926 /* AppDelegate.swift in Sources */,
+				03ECAE3C1E2B1BA300E68926 /* VendingItemCell.swift in Sources */,
+				03EABD4E1E2DA3F800135081 /* VendingMachine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +194,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -231,6 +244,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -300,6 +314,7 @@
 				03ECAE381E2A523B00E68926 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
