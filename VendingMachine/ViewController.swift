@@ -185,6 +185,8 @@ class ViewController: UIViewController , UICollectionViewDataSource, UICollectio
     @IBAction func addFund(_ sender: Any) {
         
         vendingMachine.amountDeposited += 5.00
+        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
+
     }
     
 
