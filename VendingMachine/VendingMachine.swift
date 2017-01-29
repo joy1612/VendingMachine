@@ -23,6 +23,8 @@ enum VendingSelection : String {
     case sportsDrink
     case gum
     
+    
+    
     func image() -> UIImage{
         switch self{
         case .candyBar: return UIImage(named: "CandyBar")!
@@ -44,8 +46,7 @@ enum VendingSelection : String {
         }else{
             return #imageLiteral(resourceName: "Default")
         }*/
-    
-    
+
     }
     
     
@@ -67,6 +68,7 @@ protocol vendingMachine {
 
     func vend(_ selection: VendingSelection, _ quantity: Int) throws
     func deposit(_ amountDeposited: Double)
+    func item(forSelection selection: VendingSelection) -> VendingItem?
 }
 
 struct Item: VendingItem{
@@ -117,6 +119,14 @@ class InventoryConverter{
 
 }
 
+enum VendingMachineError : Error {
+    case invalidSelection
+    case insufficientAmount(required : Double)
+    case outOfStock
+}
+
+
+
 class FoodVendingMachine: vendingMachine {
     var selection: [VendingSelection] = [.candyBar,.chips,.cookie,.dietSoda,.fruitJuice, .gum, .popTart , .sandwich]
     
@@ -128,10 +138,34 @@ class FoodVendingMachine: vendingMachine {
     }
     
     func vend(_ selection: VendingSelection, _ quantity: Int) throws {
+        guard var item = inventory[selection] else {
+            throw VendingMachineError.invalidSelection
+        }
         
+        guard item.quantity >= quantity else{
+            throw VendingMachineError.outOfStock
+        }
+        
+        let totalPrice = item.price * Double(quantity)
+        
+        if amountDeposited >= totalPrice{
+            amountDeposited -= totalPrice
+            item.quantity -= quantity
+            
+            inventory.updateValue(item, forKey: selection)
+        }
+        
+        else {
+            let amountRequired = totalPrice - amountDeposited
+            throw VendingMachineError.insufficientAmount(required: amountRequired)
+        }
     }
     
     func deposit(_ amountDeposited: Double) {
         
+    }
+    
+    func item(forSelection selection: VendingSelection) -> VendingItem? {
+        return inventory[selection]
     }
 }

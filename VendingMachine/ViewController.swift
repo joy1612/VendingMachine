@@ -20,7 +20,9 @@ class ViewController: UIViewController , UICollectionViewDataSource, UICollectio
         
     @IBOutlet weak var balanceLabel: UILabel!
     
-    let vendingMachine : vendingMachine
+    var vendingMachine : vendingMachine
+    var currentSelection : VendingSelection?
+    var quantity = 1
     
     required init?(coder aDecoder: NSCoder) {
         do{
@@ -40,13 +42,17 @@ class ViewController: UIViewController , UICollectionViewDataSource, UICollectio
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setUpCollectionViewCells()
-        print(vendingMachine.inventory)
+      //  print(vendingMachine.inventory)
+        
+        balanceLabel.text = "$\(vendingMachine.amountDeposited)"
+        totalLabel.text = "$00.00"
+       // quantityLabel.text = "0"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+}
     
     func setUpCollectionViewCells(){
         let layout = UICollectionViewFlowLayout()
@@ -65,7 +71,34 @@ class ViewController: UIViewController , UICollectionViewDataSource, UICollectio
         
     }
     
-    //below the functions comes from UICollectionViewDataSource protocol
+    @IBAction func purchase(_ sender: Any) {
+        
+        if let currentSelection = currentSelection{
+            do{
+                try vendingMachine.vend(currentSelection, quantity)
+                balanceLabel.text = "$\(vendingMachine.amountDeposited)"
+            }catch VendingMachineError.insufficientAmount(required: vendingMachine.amountDeposited) {
+                showAlert(title: "out of stock", message: nil, preferredStyle: .alert)
+            }catch let error{
+                fatalError("\(error)")
+            }
+            
+        }else{
+        
+        }
+    }
+    
+    func showAlert(title:String, message:String? = nil, preferredStyle: UIAlertControllerStyle =     .alert){
+        let alertController = UIAlertController(title: title   , message: message, preferredStyle: preferredStyle)
+        let okAction =  UIAlertAction(title: "OK", style: .default, handler: nil)
+       
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true , completion: nil)
+    }
+    
+        //below the functions comes from UICollectionViewDataSource protocol
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        return vendingMachine.selection.count
@@ -83,10 +116,22 @@ class ViewController: UIViewController , UICollectionViewDataSource, UICollectio
         return cell
     }
     
+    func updateValue(){
+        
+    
+    }
+    
     //below the functions comes from UICollectionViewDelegate protocol
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         updateCell(having: indexPath, selected: true)
+        
+        currentSelection = vendingMachine.selection[indexPath.row]
+        updateTotalBalance()
+        
+       // quantityLabel.text = String(1.0)
+
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -112,6 +157,36 @@ class ViewController: UIViewController , UICollectionViewDataSource, UICollectio
     }
 
 
+    @IBAction func valueChanger(_ sender: UIStepper) {
+        //print(sender.value)
+        
+        quantity = Int(sender.value)
+        quantityLabel.text = String(sender.value)
+        
+        updateTotalBalance()
+    }
+    
+    func updateTotalBalance(){
+        
+        
+        if let currentSelection = currentSelection {
+            let item = vendingMachine.item(forSelection: currentSelection)
+            
+            priceLabel.text = "$\(item!.price)"
+           // quantityLabel.text = "\(item!.quantity)"
+            
+            
+            totalLabel.text = "$\(item!.price * Double(quantity))"
+            
+        }
+    
+    }
+    
+    @IBAction func addFund(_ sender: Any) {
+        
+        vendingMachine.amountDeposited += 5.00
+    }
+    
 
 }
 
